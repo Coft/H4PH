@@ -6,6 +6,13 @@ class Abbr {
 	private $markupName = 'abbr';
 	private $isContenerable = true;
 
+	public function __construct() {
+		$argumentsNoumber = func_num_args();
+		for ($i = 0; $i < $argumentsNoumber; $i++) {
+			$this->addContent(func_get_arg($i));
+		}
+	}
+
 	public static function factory() {
 		$markupTag = new Abbr;
 		$argumentsNoumber = func_num_args();
@@ -17,6 +24,7 @@ class Abbr {
 
 	public function addContent($content) {
 		$this->content .= (string) $content;
+		return $this;
 	}
 
 	public function __toString() {

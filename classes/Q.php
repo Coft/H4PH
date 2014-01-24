@@ -6,6 +6,13 @@ class Q {
 	private $markupName = 'q';
 	private $isContenerable = true;
 
+	public function __construct() {
+		$argumentsNoumber = func_num_args();
+		for ($i = 0; $i < $argumentsNoumber; $i++) {
+			$this->addContent(func_get_arg($i));
+		}
+	}
+
 	public static function factory() {
 		$markupTag = new Q;
 		$argumentsNoumber = func_num_args();
@@ -17,6 +24,7 @@ class Q {
 
 	public function addContent($content) {
 		$this->content .= (string) $content;
+		return $this;
 	}
 
 	public function __toString() {

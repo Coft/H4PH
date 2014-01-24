@@ -6,6 +6,13 @@ class Small {
 	private $markupName = 'small';
 	private $isContenerable = true;
 
+	public function __construct() {
+		$argumentsNoumber = func_num_args();
+		for ($i = 0; $i < $argumentsNoumber; $i++) {
+			$this->addContent(func_get_arg($i));
+		}
+	}
+
 	public static function factory() {
 		$markupTag = new Small;
 		$argumentsNoumber = func_num_args();
@@ -17,6 +24,7 @@ class Small {
 
 	public function addContent($content) {
 		$this->content .= (string) $content;
+		return $this;
 	}
 
 	public function __toString() {

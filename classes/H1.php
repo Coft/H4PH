@@ -6,6 +6,13 @@ class H1 {
 	private $markupName = 'h1';
 	private $isContenerable = true;
 
+	public function __construct() {
+		$argumentsNoumber = func_num_args();
+		for ($i = 0; $i < $argumentsNoumber; $i++) {
+			$this->addContent(func_get_arg($i));
+		}
+	}
+
 	public static function factory() {
 		$markupTag = new H1;
 		$argumentsNoumber = func_num_args();
@@ -17,6 +24,7 @@ class H1 {
 
 	public function addContent($content) {
 		$this->content .= (string) $content;
+		return $this;
 	}
 
 	public function __toString() {
