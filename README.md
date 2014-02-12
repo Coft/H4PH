@@ -5,7 +5,7 @@ HTML4 PHP Helper
 
 Why?
 ===
-Prevents making typo and using invalid attrs. 
+Prevents making typo and using invalid attrs
 Facilitate writing "', and hinting by IDE
 
 Installation
@@ -20,10 +20,12 @@ $span = new Span(new I("First"));
 $span->addContent("-Red color div");
 $span->style("color:red;");
 echo $span.Br::factory();
+</pre>
+
 // Outputs
-// <span style='color:red;'><i>First</i>-Red color div</span><br />
+// &lt;span style='color:red;'&gt;&lt;i&gt;First&lt;/i&gt;-Red color div&lt;/span&gt;&lt;br /&gt;
 
-
+<pre>
 $bold = B::factory(
 	I::factory("Second"),
 	"-",
@@ -31,12 +33,14 @@ $bold = B::factory(
 )->style("color:blue;");
 
 echo $bold.Br::factory();
-// Outputs
-// <b style='color:blue;'><i>Second</i>-Blue color bold text</b><br />
 </pre>
+// Outputs
+// &lt;b style='color:blue;'&gt;&lt;i&gt;Second&lt;/i&gt;-Blue color bold text&lt;/b&gt;&lt;br /&gt;
+<pre>
 echo Div::factory(
 	    $span->addContent(" "),
 	    $bold
 	);
+</pre>
 // Outputs
-// <div><span style='color:red;'><i>First</i>-Red color div </span><b style='color:blue;'><i>Second</i>-Blue color bold text</b></div>
+// &lt;div&gt;&lt;span style='color:red;'&gt;&lt;i&gt;First&lt;/i&gt;-Red color div &lt;/span&gt;&lt;b style='color:blue;'&gt;&lt;i&gt;Second&lt;/i&gt;-Blue color bold text&lt;/b&gt;&lt;/div&gt;
