@@ -1,73 +1,159 @@
 <?php
-class Bdo {
+/**
+ * H4PH - HTML4 PHP Helper 
+ * @link https://github.com/Coft/H4PH
+ */
 
-	private $attrs = array();
-	private $content = null;
-	private $markupName = 'bdo';
-	private $isContenerable = true;
+class Bdo
+{
+    /**
+     * contains all setted attributes 
+     * @var array 
+     */
+    private $attrs = array();
+    /**
+     * keeps content 
+     * @var string 
+     */
+    private $content = null;
+    /**
+     * holds markup name 
+     * @var string 
+     */
+    private static $markupName = 'bdo';
+    /**
+     * tells is this markup can handle content 
+     * @var bool 
+     */
+    private static $isContenerable = true;
 
-	public function __construct() {
-		$argumentsNoumber = func_num_args();
-		for ($i = 0; $i < $argumentsNoumber; $i++) {
-			$this->addContent(func_get_arg($i));
-		}
-	}
+    /**
+     * __construct() - can add content to tag
+     * @param  null|string $content
+     * @return  Bdo 
+     */
+    public function __construct($content = null) 
+    {
+        $argumentsNumber = func_num_args();
+        for ($i = 0; $i < $argumentsNumber; $i++) {
+            $this->addContent(func_get_arg($i));
+        }
+    }
 
-	public static function factory() {
-		$markupTag = new Bdo;
-		$argumentsNoumber = func_num_args();
-		for ($i = 0; $i < $argumentsNoumber; $i++) {
-			$markupTag->addContent(func_get_arg($i));
-		}
-		return $markupTag;
-	}
+    /**
+     * renders tag and it content to string
+     * @param  null|string $content
+     * @return  Bdo 
+     */
+    public static function getInstance($content = null) 
+    {
+        $markupTag = new Bdo;
+        $argumentsNumber = func_num_args();
+        for ($i = 0; $i < $argumentsNumber; $i++) {
+            $markupTag->addContent(func_get_arg($i));
+        }
+        return $markupTag;
+    }
 
-	public function addContent($content) {
-		$this->content .= (string) $content;
-		return $this;
-	}
+    /**
+     * adds content to tag
+     * @param  null|string $content
+     * @return  Bdo 
+     */
+    public function addContent($content = null) 
+    {
+        $this->content .= (string) $content;
+        return $this;
+    }
 
-	public function __toString() {
-		$parsedAttrs = '';
-		foreach ($this->attrs as $attrName => $attrValue) {
-			$parsedAttrs .= ' '.$attrName.'=\''.$attrValue.'\'';
-		}
-		return '<'.$this->markupName.$parsedAttrs.'>'.$this->content.'</'.$this->markupName.'>';
-	}
+    /**
+     * renders tag and it content to string
+     * @return string
+     */
+    public function __toString() 
+    {
+        $parsedAttrs = '';
+        foreach ($this->attrs as $attrName => $attrValue) {
+            $parsedAttrs .= ' '.$attrName.'=\''.$attrValue.'\'';
+        }
+        return '<'.self::$markupName.$parsedAttrs.'>'.$this->content.'</'.self::$markupName.'>';
+    }
 
-	public function dir($value) {
-		$this->attrs['dir'] = $value;
-		return $this;
-	}
+    /**
+     * sets dir attribute
+     * @param  null|string $value
+     * @return  Bdo 
+     */
+    public function dir($value = null) 
+    {
+        $this->attrs['dir'] = $value;
+        return $this;
+    }
 
-	public function classes($value) {
-		$this->attrs['class'] = $value;
-		return $this;
-	}
+    /**
+     * sets classes attribute
+     * @param  null|string $value
+     * @return  Bdo 
+     */
+    public function classes($value = null) 
+    {
+        $this->attrs['class'] = $value;
+        return $this;
+    }
 
-	public function id($value) {
-		$this->attrs['id'] = $value;
-		return $this;
-	}
+    /**
+     * sets id attribute
+     * @param  null|string $value
+     * @return  Bdo 
+     */
+    public function id($value = null) 
+    {
+        $this->attrs['id'] = $value;
+        return $this;
+    }
 
-	public function lang($value) {
-		$this->attrs['lang'] = $value;
-		return $this;
-	}
+    /**
+     * sets lang attribute
+     * @param  null|string $value
+     * @return  Bdo 
+     */
+    public function lang($value = null) 
+    {
+        $this->attrs['lang'] = $value;
+        return $this;
+    }
 
-	public function style($value) {
-		$this->attrs['style'] = $value;
-		return $this;
-	}
+    /**
+     * sets style attribute
+     * @param  null|string $value
+     * @return  Bdo 
+     */
+    public function style($value = null) 
+    {
+        $this->attrs['style'] = $value;
+        return $this;
+    }
 
-	public function title($value) {
-		$this->attrs['title'] = $value;
-		return $this;
-	}
+    /**
+     * sets title attribute
+     * @param  null|string $value
+     * @return  Bdo 
+     */
+    public function title($value = null) 
+    {
+        $this->attrs['title'] = $value;
+        return $this;
+    }
 
-	public function xmlLang($value) {
-		$this->attrs['xml:lang'] = $value;
-		return $this;
-	}
+    /**
+     * sets xmlLang attribute
+     * @param  null|string $value
+     * @return  Bdo 
+     */
+    public function xmlLang($value = null) 
+    {
+        $this->attrs['xml:lang'] = $value;
+        return $this;
+    }
 }
  ?>

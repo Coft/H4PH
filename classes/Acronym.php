@@ -1,123 +1,269 @@
 <?php
-class Acronym {
+/**
+ * H4PH - HTML4 PHP Helper 
+ * @link https://github.com/Coft/H4PH
+ */
 
-	private $attrs = array();
-	private $content = null;
-	private $markupName = 'acronym';
-	private $isContenerable = true;
+class Acronym
+{
+    /**
+     * contains all setted attributes 
+     * @var array 
+     */
+    private $attrs = array();
+    /**
+     * keeps content 
+     * @var string 
+     */
+    private $content = null;
+    /**
+     * holds markup name 
+     * @var string 
+     */
+    private static $markupName = 'acronym';
+    /**
+     * tells is this markup can handle content 
+     * @var bool 
+     */
+    private static $isContenerable = true;
 
-	public function __construct() {
-		$argumentsNoumber = func_num_args();
-		for ($i = 0; $i < $argumentsNoumber; $i++) {
-			$this->addContent(func_get_arg($i));
-		}
-	}
+    /**
+     * __construct() - can add content to tag
+     * @param  null|string $content
+     * @return  Acronym 
+     */
+    public function __construct($content = null) 
+    {
+        $argumentsNumber = func_num_args();
+        for ($i = 0; $i < $argumentsNumber; $i++) {
+            $this->addContent(func_get_arg($i));
+        }
+    }
 
-	public static function factory() {
-		$markupTag = new Acronym;
-		$argumentsNoumber = func_num_args();
-		for ($i = 0; $i < $argumentsNoumber; $i++) {
-			$markupTag->addContent(func_get_arg($i));
-		}
-		return $markupTag;
-	}
+    /**
+     * renders tag and it content to string
+     * @param  null|string $content
+     * @return  Acronym 
+     */
+    public static function getInstance($content = null) 
+    {
+        $markupTag = new Acronym;
+        $argumentsNumber = func_num_args();
+        for ($i = 0; $i < $argumentsNumber; $i++) {
+            $markupTag->addContent(func_get_arg($i));
+        }
+        return $markupTag;
+    }
 
-	public function addContent($content) {
-		$this->content .= (string) $content;
-		return $this;
-	}
+    /**
+     * adds content to tag
+     * @param  null|string $content
+     * @return  Acronym 
+     */
+    public function addContent($content = null) 
+    {
+        $this->content .= (string) $content;
+        return $this;
+    }
 
-	public function __toString() {
-		$parsedAttrs = '';
-		foreach ($this->attrs as $attrName => $attrValue) {
-			$parsedAttrs .= ' '.$attrName.'=\''.$attrValue.'\'';
-		}
-		return '<'.$this->markupName.$parsedAttrs.'>'.$this->content.'</'.$this->markupName.'>';
-	}
+    /**
+     * renders tag and it content to string
+     * @return string
+     */
+    public function __toString() 
+    {
+        $parsedAttrs = '';
+        foreach ($this->attrs as $attrName => $attrValue) {
+            $parsedAttrs .= ' '.$attrName.'=\''.$attrValue.'\'';
+        }
+        return '<'.self::$markupName.$parsedAttrs.'>'.$this->content.'</'.self::$markupName.'>';
+    }
 
-	public function classes($value) {
-		$this->attrs['class'] = $value;
-		return $this;
-	}
+    /**
+     * sets classes attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function classes($value = null) 
+    {
+        $this->attrs['class'] = $value;
+        return $this;
+    }
 
-	public function dir($value) {
-		$this->attrs['dir'] = $value;
-		return $this;
-	}
+    /**
+     * sets dir attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function dir($value = null) 
+    {
+        $this->attrs['dir'] = $value;
+        return $this;
+    }
 
-	public function id($value) {
-		$this->attrs['id'] = $value;
-		return $this;
-	}
+    /**
+     * sets id attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function id($value = null) 
+    {
+        $this->attrs['id'] = $value;
+        return $this;
+    }
 
-	public function lang($value) {
-		$this->attrs['lang'] = $value;
-		return $this;
-	}
+    /**
+     * sets lang attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function lang($value = null) 
+    {
+        $this->attrs['lang'] = $value;
+        return $this;
+    }
 
-	public function style($value) {
-		$this->attrs['style'] = $value;
-		return $this;
-	}
+    /**
+     * sets style attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function style($value = null) 
+    {
+        $this->attrs['style'] = $value;
+        return $this;
+    }
 
-	public function title($value) {
-		$this->attrs['title'] = $value;
-		return $this;
-	}
+    /**
+     * sets title attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function title($value = null) 
+    {
+        $this->attrs['title'] = $value;
+        return $this;
+    }
 
-	public function xmlLang($value) {
-		$this->attrs['xml:lang'] = $value;
-		return $this;
-	}
+    /**
+     * sets xmlLang attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function xmlLang($value = null) 
+    {
+        $this->attrs['xml:lang'] = $value;
+        return $this;
+    }
 
-	public function onclick($value) {
-		$this->attrs['onclick'] = $value;
-		return $this;
-	}
+    /**
+     * sets onclick attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function onclick($value = null) 
+    {
+        $this->attrs['onclick'] = $value;
+        return $this;
+    }
 
-	public function ondblclick($value) {
-		$this->attrs['ondblclick'] = $value;
-		return $this;
-	}
+    /**
+     * sets ondblclick attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function ondblclick($value = null) 
+    {
+        $this->attrs['ondblclick'] = $value;
+        return $this;
+    }
 
-	public function onmousedown($value) {
-		$this->attrs['onmousedown'] = $value;
-		return $this;
-	}
+    /**
+     * sets onmousedown attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function onmousedown($value = null) 
+    {
+        $this->attrs['onmousedown'] = $value;
+        return $this;
+    }
 
-	public function onmousemove($value) {
-		$this->attrs['onmousemove'] = $value;
-		return $this;
-	}
+    /**
+     * sets onmousemove attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function onmousemove($value = null) 
+    {
+        $this->attrs['onmousemove'] = $value;
+        return $this;
+    }
 
-	public function onmouseout($value) {
-		$this->attrs['onmouseout'] = $value;
-		return $this;
-	}
+    /**
+     * sets onmouseout attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function onmouseout($value = null) 
+    {
+        $this->attrs['onmouseout'] = $value;
+        return $this;
+    }
 
-	public function onmouseover($value) {
-		$this->attrs['onmouseover'] = $value;
-		return $this;
-	}
+    /**
+     * sets onmouseover attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function onmouseover($value = null) 
+    {
+        $this->attrs['onmouseover'] = $value;
+        return $this;
+    }
 
-	public function onmouseup($value) {
-		$this->attrs['onmouseup'] = $value;
-		return $this;
-	}
+    /**
+     * sets onmouseup attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function onmouseup($value = null) 
+    {
+        $this->attrs['onmouseup'] = $value;
+        return $this;
+    }
 
-	public function onkeydown($value) {
-		$this->attrs['onkeydown'] = $value;
-		return $this;
-	}
+    /**
+     * sets onkeydown attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function onkeydown($value = null) 
+    {
+        $this->attrs['onkeydown'] = $value;
+        return $this;
+    }
 
-	public function onkeypress($value) {
-		$this->attrs['onkeypress'] = $value;
-		return $this;
-	}
+    /**
+     * sets onkeypress attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function onkeypress($value = null) 
+    {
+        $this->attrs['onkeypress'] = $value;
+        return $this;
+    }
 
-	public function onkeyup($value) {
-		$this->attrs['onkeyup'] = $value;
-		return $this;
-	}
+    /**
+     * sets onkeyup attribute
+     * @param  null|string $value
+     * @return  Acronym 
+     */
+    public function onkeyup($value = null) 
+    {
+        $this->attrs['onkeyup'] = $value;
+        return $this;
+    }
 }
  ?>

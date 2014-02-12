@@ -19,25 +19,25 @@ Example usage
 $span = new Span(new I("First"));
 $span->addContent("-Red color div");
 $span->style("color:red;");
-echo $span.Br::factory();
+echo $span.Br::getInstance();
 </pre>
 
 // Outputs<br/>
 // &lt;span style='color:red;'&gt;&lt;i&gt;First&lt;/i&gt;-Red color div&lt;/span&gt;&lt;br /&gt;
 
 <pre>
-$bold = B::factory(
-	I::factory("Second"),
+$bold = B::getInstance(
+	I::getInstance("Second"),
 	"-",
 	"Blue color bold text"
 )->style("color:blue;");
 
-echo $bold.Br::factory();
+echo $bold.Br::getInstance();
 </pre>
 // Outputs <br/>
 // &lt;b style='color:blue;'&gt;&lt;i&gt;Second&lt;/i&gt;-Blue color bold text&lt;/b&gt;&lt;br /&gt;
 <pre>
-echo Div::factory(
+echo Div::getInstance(
 	    $span->addContent(" "),
 	    $bold
 	);

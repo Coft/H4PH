@@ -1,38 +1,82 @@
 <?php
-class HtmlComment {
+/**
+ * H4PH - HTML4 PHP Helper 
+ * @link https://github.com/Coft/H4PH
+ */
 
-	private $attrs = array();
-	private $content = null;
-	private $markupName = '!--...--';
-	private $isContenerable = true;
+class HtmlComment
+{
+    /**
+     * contains all setted attributes 
+     * @var array 
+     */
+    private $attrs = array();
+    /**
+     * keeps content 
+     * @var string 
+     */
+    private $content = null;
+    /**
+     * holds markup name 
+     * @var string 
+     */
+    private static $markupName = '!--...--';
+    /**
+     * tells is this markup can handle content 
+     * @var bool 
+     */
+    private static $isContenerable = true;
 
-	public function __construct() {
-		$argumentsNoumber = func_num_args();
-		for ($i = 0; $i < $argumentsNoumber; $i++) {
-			$this->addContent(func_get_arg($i));
-		}
-	}
+    /**
+     * __construct() - can add content to tag
+     * @param  null|string $content
+     * @return  HtmlComment 
+     */
+    public function __construct($content = null) 
+    {
+        $argumentsNumber = func_num_args();
+        for ($i = 0; $i < $argumentsNumber; $i++) {
+            $this->addContent(func_get_arg($i));
+        }
+    }
 
-	public static function factory() {
-		$markupTag = new HtmlComment;
-		$argumentsNoumber = func_num_args();
-		for ($i = 0; $i < $argumentsNoumber; $i++) {
-			$markupTag->addContent(func_get_arg($i));
-		}
-		return $markupTag;
-	}
+    /**
+     * renders tag and it content to string
+     * @param  null|string $content
+     * @return  HtmlComment 
+     */
+    public static function getInstance($content = null) 
+    {
+        $markupTag = new HtmlComment;
+        $argumentsNumber = func_num_args();
+        for ($i = 0; $i < $argumentsNumber; $i++) {
+            $markupTag->addContent(func_get_arg($i));
+        }
+        return $markupTag;
+    }
 
-	public function addContent($content) {
-		$this->content .= (string) $content;
-		return $this;
-	}
+    /**
+     * adds content to tag
+     * @param  null|string $content
+     * @return  HtmlComment 
+     */
+    public function addContent($content = null) 
+    {
+        $this->content .= (string) $content;
+        return $this;
+    }
 
-	public function __toString() {
-		$parsedAttrs = '';
-		foreach ($this->attrs as $attrName => $attrValue) {
-			$parsedAttrs .= ' '.$attrName.'=\''.$attrValue.'\'';
-		}
-		return '<'.$this->markupName.$parsedAttrs.'>'.$this->content.'</'.$this->markupName.'>';
-	}
+    /**
+     * renders tag and it content to string
+     * @return string
+     */
+    public function __toString() 
+    {
+        $parsedAttrs = '';
+        foreach ($this->attrs as $attrName => $attrValue) {
+            $parsedAttrs .= ' '.$attrName.'=\''.$attrValue.'\'';
+        }
+        return '<'.self::$markupName.$parsedAttrs.'>'.$this->content.'</'.self::$markupName.'>';
+    }
 }
  ?>
