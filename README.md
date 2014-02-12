@@ -5,7 +5,7 @@ HTML4 PHP Helper
 
 Why?
 ===
-Prevents making typo and using invalid attrs
+Prevents making typo and using invalid attrs. 
 Facilitate writing "', and hinting by IDE
 
 Installation
@@ -22,7 +22,7 @@ $span->style("color:red;");
 echo $span.Br::factory();
 </pre>
 
-// Outputs
+// Outputs<br/>
 // &lt;span style='color:red;'&gt;&lt;i&gt;First&lt;/i&gt;-Red color div&lt;/span&gt;&lt;br /&gt;
 
 <pre>
@@ -34,7 +34,7 @@ $bold = B::factory(
 
 echo $bold.Br::factory();
 </pre>
-// Outputs
+// Outputs <br/>
 // &lt;b style='color:blue;'&gt;&lt;i&gt;Second&lt;/i&gt;-Blue color bold text&lt;/b&gt;&lt;br /&gt;
 <pre>
 echo Div::factory(
@@ -42,5 +42,5 @@ echo Div::factory(
 	    $bold
 	);
 </pre>
-// Outputs
+// Outputs <br/>
 // &lt;div&gt;&lt;span style='color:red;'&gt;&lt;i&gt;First&lt;/i&gt;-Red color div &lt;/span&gt;&lt;b style='color:blue;'&gt;&lt;i&gt;Second&lt;/i&gt;-Blue color bold text&lt;/b&gt;&lt;/div&gt;
